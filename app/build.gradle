@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "RIOT_API_KEY", RIOT_API_KEY)
     }
     buildTypes {
         release {

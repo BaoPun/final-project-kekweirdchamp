@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import java.net.MalformedURLException;
 
+import com.example.leagueoflegends.BuildConfig;
 import com.example.leagueoflegends.data.*;
 import com.google.gson.Gson;
 
@@ -21,7 +22,7 @@ public class LeagueUtils {
     private final static String api_key_param = "api_key";
 
     // This must be changed daily!!!!!!!!!!
-    private final static String apiKey = "RGAPI-d8784d9a-9f47-4201-9384-fdb99cf41cc5";
+    private final static String apiKey = BuildConfig.RIOT_API_KEY;
 
     // Each summoner has specific info.  The only one we care about is their unique id
     class SummonerInfoResults{
