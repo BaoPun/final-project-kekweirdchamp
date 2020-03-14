@@ -52,6 +52,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
 
     class SearchResultViewHolder extends RecyclerView.ViewHolder{
         private TextView text;
+
         SearchResultViewHolder(View itemView){
             super(itemView);
             text = itemView.findViewById(R.id.tv_search_result);
@@ -63,7 +64,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
                 }
             });
         }
-
 
         void bind(LeagueMatchInfo match){
             text.setText(match.summonerName);

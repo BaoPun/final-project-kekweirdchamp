@@ -13,14 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.AsyncTask;
 import com.google.gson.Gson;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.net.MalformedURLException;
-import java.net.*;
-import java.io.*;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -122,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
             @Override
             public void onClick(View v){
                 String summoner = mSearchBar.getText().toString();
-                // Extract a list of summoner names that are a part of the LIVE MATCH
                 if(!TextUtils.isEmpty(summoner))
                     queryForMatchInfo(summoner);
             }

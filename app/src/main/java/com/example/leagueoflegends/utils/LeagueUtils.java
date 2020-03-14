@@ -22,7 +22,7 @@ public class LeagueUtils {
     private final static String api_key_param = "api_key";
 
     // This must be changed daily!!!!!!!!!!
-    private final static String apiKey = BuildConfig.RIOT_API_KEY;
+    private final static String apiKey = "RGAPI-73f52130-9bd7-4574-914d-5676af18c255";
 
     // Each summoner has specific info.  The only one we care about is their unique id
     class SummonerInfoResults{
@@ -38,9 +38,10 @@ public class LeagueUtils {
                 .build().toString();
     }
 
-    public static String getIdFromURL(String name){
+    // From
+    public static String getIdFromSummonerNameJson(String json){
         Gson gson = new Gson();
-        summonerId = gson.fromJson(name, SummonerInfoResults.class);
+        summonerId = gson.fromJson(json, SummonerInfoResults.class);
         return summonerId.id;
     }
 
@@ -54,39 +55,6 @@ public class LeagueUtils {
                 .build().toString();
     }
 
-    // From the query, we only care about the participants themselves
-    static class InGameInformation{
-        ParticipantsInfo[] participants;
-    }
-
-    // Extract the following from each participant: team id, champion id, summoner name, summoner id
-    static class ParticipantsInfo{
-        int teamId;
-        int championId;
-        String summonerName;
-        String summonerId;
-    }
-
-    // Extract the summoner ID and then send that ID to the spectator query
-    // From the spectator query, extract all players involved in the match
-    public static ParticipantsInfo[] retrieveMatchList(String getSummonerNameJSON){
-        Gson gson = new Gson();
-        summonerId = gson.fromJson(getSummonerNameJSON, SummonerInfoResults.class);
-        if(summonerId != null && summonerId.id != ""){
-
-            // Now that we have the summoner id, go ahead and query for the spectator id
-            InGameInformation gameInfo = gson.fromJson(buildSpectatorURL(summonerId.id), InGameInformation.class);
-            if(gameInfo != null && gameInfo.participants != null){
-
-                return gameInfo.participants;
-            }
-
-
-
-            return null;
-        }
-        return null;
-    }
 
     static class MatchData{
         ArrayList<LeagueMatchInfo> participants;

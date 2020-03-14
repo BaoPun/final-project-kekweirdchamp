@@ -33,7 +33,6 @@ public class MatchViewModel extends ViewModel{
     // Get the list of participants in the match
     public void loadLiveGameURL(String encrypted){
         mRepository.loadLiveGameURL(encrypted);
-
     }
 
     // Getter

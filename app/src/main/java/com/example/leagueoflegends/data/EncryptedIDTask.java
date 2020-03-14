@@ -34,11 +34,11 @@ public class EncryptedIDTask extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String s){
+    protected void onPostExecute(String json){
         //System.out.println("Contents of summoner json: " + s);
         String id = "";
-        if(s != null)
-            id = LeagueUtils.getIdFromURL(s);
+        if(json != null)
+            id = LeagueUtils.getIdFromSummonerNameJson(json);
         mCallback.onRetrievedEncryptedID(id);
     }
 }
