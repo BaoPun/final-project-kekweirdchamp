@@ -37,6 +37,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,6 +56,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSearchResultClickListener{
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     //Private members
     private RecyclerView mRecyclerLiveData;
@@ -132,6 +134,24 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onSearchResultClicked(LeagueMatchInfo info){
         // Create intent here (NOT COMPLETE FOR NOW)
         System.out.println("Who is this: " + info.summonerName);
@@ -144,9 +164,17 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
             2. Using that unique summoner ID, get the list of all the players in a Summoners Rift game with that summoner name
      */
     public void queryForMatchInfo(String summoner){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String server = preferences.getString(
+                getString(R.string.pref_server_key),
+                getString(R.string.pref_server_default_value)
+        );
+
+        LeagueUtils.setServer(server);
 
         // Part 1: build the summoner name query url
         String summonerID_url = LeagueUtils.buildSummonerNameURL(summoner);
+        Log.d(TAG, "searching with url: " + summonerID_url);
 
         // Get JSON content from first url and then extract its encrypted ID
         mLiveMatchDataViewModel.loadSummonerNameURL(summonerID_url);

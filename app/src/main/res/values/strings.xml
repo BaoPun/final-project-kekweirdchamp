@@ -3,4 +3,31 @@
     <string name="search_box_hint">Enter summoner name: </string>
     <string name="search_button_text">Search Live Data</string>
     <string name="loading_error">Error: summoner either does not exist or is not in a live game</string>
+
+    <!-- strings for server prefs -->
+    <string name="pref_server_key" translatable="false">pref_server</string>
+    <string name="pref_server_title">Region</string>
+    <string name="pref_server_ru">RU</string>
+    <string name="pref_server_kr">KR</string>
+    <string name="pref_server_br1">BR1</string>
+    <string name="pref_server_oc1">OC1</string>
+    <string name="pref_server_jp1">JP1</string>
+    <string name="pref_server_na1">NA1</string>
+    <string name="pref_server_eun1">EUN1</string>
+    <string name="pref_server_euw1">EUW1</string>
+    <string name="pref_server_tr1">TR1</string>
+    <string name="pref_server_la1">LA1</string>
+    <string name="pref_server_la2">LA2</string>
+    <string name="pref_server_ru_value" translatable="false">ru</string>
+    <string name="pref_server_kr_value" translatable="false">kr</string>
+    <string name="pref_server_br1_value" translatable="false">br1</string>
+    <string name="pref_server_oc1_value" translatable="false">oc1</string>
+    <string name="pref_server_jp1_value" translatable="false">jp1</string>
+    <string name="pref_server_na1_value" translatable="false">na1</string>
+    <string name="pref_server_eun1_value" translatable="false">eun1</string>
+    <string name="pref_server_euw1_value" translatable="false">euw1</string>
+    <string name="pref_server_tr1_value" translatable="false">tr1</string>
+    <string name="pref_server_la1_value" translatable="false">la1</string>
+    <string name="pref_server_la2_value" translatable="false">la2</string>
+    <string name="pref_server_default_value" translatable="false">@string/pref_server_na1_value</string>
 </resources>
