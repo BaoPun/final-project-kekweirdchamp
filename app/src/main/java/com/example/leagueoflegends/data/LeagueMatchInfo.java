@@ -7,6 +7,7 @@ public class LeagueMatchInfo implements Serializable {
     public int championId;
     public String summonerName;
     public String summonerId;
+    public String championName; //not in json directly, but retrieved from championId
 }
 
 
