@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_server_entries">
+        <item>@string/pref_server_ru</item>
+        <item>@string/pref_server_kr</item>
+        <item>@string/pref_server_br1</item>
+        <item>@string/pref_server_oc1</item>
+        <item>@string/pref_server_jp1</item>
+        <item>@string/pref_server_na1</item>
+        <item>@string/pref_server_eun1</item>
+        <item>@string/pref_server_euw1</item>
+        <item>@string/pref_server_tr1</item>
+        <item>@string/pref_server_la1</item>
+        <item>@string/pref_server_la2</item>
+    </string-array>
+
+    <string-array name="pref_server_values">
+        <item>@string/pref_server_ru_value</item>
+        <item>@string/pref_server_kr_value</item>
+        <item>@string/pref_server_br1_value</item>
+        <item>@string/pref_server_oc1_value</item>
+        <item>@string/pref_server_jp1_value</item>
+        <item>@string/pref_server_na1_value</item>
+        <item>@string/pref_server_eun1_value</item>
+        <item>@string/pref_server_euw1_value</item>
+        <item>@string/pref_server_tr1_value</item>
+        <item>@string/pref_server_la1_value</item>
+        <item>@string/pref_server_la2_value</item>
+    </string-array>
+</resources>

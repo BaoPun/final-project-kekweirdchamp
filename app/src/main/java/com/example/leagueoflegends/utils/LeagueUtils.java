@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 public class LeagueUtils {
     // Query by summoner name
     private final static String https = "https://";
-    private final static String server = "na1";
+    private static String server = "na1";
     private final static String getSummonerName = "api.riotgames.com/lol/summoner/v4/summoners/";
     private final static String byName_param = "by-name";
     private final static String api_key_param = "api_key";
@@ -102,5 +102,7 @@ public class LeagueUtils {
         }
     }
 
-
+    public static void setServer(String s) {
+        server = s;
+    }
 }
