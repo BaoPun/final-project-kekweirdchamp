@@ -178,11 +178,6 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
 
         // Get JSON content from first url and then extract its encrypted ID
         mLiveMatchDataViewModel.loadSummonerNameURL(summonerID_url);
-        String encryptedID = mLiveMatchDataViewModel.getEncryptedID();
-
-        // Part 2: using the encrypted id retrieved above, load match data.
-        if(encryptedID != null)
-            mLiveMatchDataViewModel.loadLiveGameURL(encryptedID);
     }
 
 
