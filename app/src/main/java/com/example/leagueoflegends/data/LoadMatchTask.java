@@ -35,7 +35,6 @@ public class LoadMatchTask extends AsyncTask<String, Void, String>{
 
     @Override
     protected void onPostExecute(String s){
-        //System.out.println("Contents of live match json: " + s);
         List<LeagueMatchInfo> searchResults = null;
         if(s != null)
             searchResults = LeagueUtils.parseMatchData(s);

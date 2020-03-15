@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.leagueoflegends.data.*;
 
 import java.util.List;
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResultViewHolder>{
     private List<LeagueMatchInfo> LiveMatchInfo;
     private OnSearchResultClickListener listener;
+    private HashMap<Integer, String> idToName = new HashMap<Integer, String>();
 
     interface OnSearchResultClickListener{
         void onSearchResultClicked(LeagueMatchInfo info);
@@ -26,6 +28,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
     }
 
     public void updateSearchResults(List<LeagueMatchInfo> searchResultsList) {
+        //for(int i = 0; i < searchResultsList.size(); i++)
+        //    searchResultsList.get(i).championName = getNameFromId(searchResultsList.get(i).championId);
         LiveMatchInfo = searchResultsList;
         notifyDataSetChanged();
     }
@@ -48,10 +52,12 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
     @Override
     public void onBindViewHolder(SearchResultViewHolder holder, int pos){
         holder.bind(LiveMatchInfo.get(pos));
+
     }
 
     class SearchResultViewHolder extends RecyclerView.ViewHolder{
         private TextView text;
+
         SearchResultViewHolder(View itemView){
             super(itemView);
             text = itemView.findViewById(R.id.tv_search_result);
@@ -63,7 +69,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
                 }
             });
         }
-
 
         void bind(LeagueMatchInfo match){
             text.setText(match.summonerName);
