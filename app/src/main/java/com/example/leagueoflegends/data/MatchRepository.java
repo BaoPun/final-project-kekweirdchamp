@@ -34,6 +34,7 @@ public class MatchRepository implements LoadMatchTask.AsyncCallback, EncryptedID
 
     public void loadLiveGameURL(String summoner) {
         String url = LeagueUtils.buildSpectatorURL(summoner);
+        System.out.println("Loading results: " + url);
         mLiveMatch.setValue(null);
         mLoadingStatus.setValue(Status.LOADING);
         new LoadMatchTask(this).execute(url);
