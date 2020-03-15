@@ -1,6 +1,8 @@
 package com.example.leagueoflegends.data;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import android.text.TextUtils;
@@ -26,11 +28,11 @@ public class MatchRepository implements LoadMatchTask.AsyncCallback, EncryptedID
         mLoadingStatus.setValue(Status.SUCCESS);
     }
 
-    public void loadSummonerNameURL(String url){
+    public void loadSummonerNameURL(String url) {
         new EncryptedIDTask(this).execute(url);
     }
 
-    public void loadLiveGameURL(String summoner){
+    public void loadLiveGameURL(String summoner) {
         String url = LeagueUtils.buildSpectatorURL(summoner);
         System.out.println("Loading results: " + url);
         mLiveMatch.setValue(null);
@@ -57,9 +59,11 @@ public class MatchRepository implements LoadMatchTask.AsyncCallback, EncryptedID
 
     @Override
     public void onRetrievedEncryptedID(String id){
-        if(id != null)
+        if(id != null) {
             encryptedID = id;
-        else
+            Log.d(TAG, "eID: " + encryptedID);
+            loadLiveGameURL(encryptedID);
+        } else
             mLoadingStatus.setValue(Status.ERROR);
     }
 }

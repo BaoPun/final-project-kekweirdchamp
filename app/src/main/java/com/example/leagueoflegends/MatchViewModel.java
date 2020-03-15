@@ -1,13 +1,17 @@
 package com.example.leagueoflegends;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.leagueoflegends.data.*;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MatchViewModel extends ViewModel{
+    private static final String TAG = MatchViewModel.class.getSimpleName();
 
     private MatchRepository mRepository;
     private LiveData<List<LeagueMatchInfo>> Match;
@@ -22,17 +26,8 @@ public class MatchViewModel extends ViewModel{
 
 
     // Get the encrypted ID given the summoner name
-    public void loadSummonerNameURL(String summoner){
+    public void loadSummonerNameURL(String summoner) {
         mRepository.loadSummonerNameURL(summoner);
-
-        // If user exists in the region (preset to NA), get the encrypted id
-        if(mRepository.encryptedID != null)
-            encryptedID = mRepository.encryptedID;
-    }
-
-    // Get the list of participants in the match
-    public void loadLiveGameURL(String encrypted){
-        mRepository.loadLiveGameURL(encrypted);
     }
 
     // Getter
