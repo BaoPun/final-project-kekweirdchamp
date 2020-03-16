@@ -13,3 +13,4 @@ Also within that specific intent, the user will either be able to go to op.gg to
   they are playing.
   
 Currently a lot of work needs to be done.
+DEVELOPERS: CREATE A FILE CALLED apikey.properties AND THEN ADD YOUR API KEY ON THERE.
