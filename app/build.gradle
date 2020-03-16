@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def apikeyFile = rootProject.file("app/apikey.properties");
+def apikey = new Properties();
+apikey.load(new FileInputStream(apikeyFile));
+
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -9,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "RIOT_API_KEY", RIOT_API_KEY)
+        buildConfigField("String", "RIOT_API_KEY", apikey['RIOT_API_KEY'])
 
     }
     buildTypes {
