@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 
-def apikeyFile = rootProject.file("app/apikey.properties");
-def apikey = new Properties();
-apikey.load(new FileInputStream(apikeyFile));
+// Make sure to add apikey.properties and then add the api key on there
+def apikeyFile = rootProject.file("apikey.properties")
+def apikey = new Properties()
+apikey.load(new FileInputStream(apikeyFile))
 
 android {
     compileSdkVersion 29
