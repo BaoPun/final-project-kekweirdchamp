@@ -2,6 +2,7 @@ package com.example.leagueoflegends;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -11,19 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.os.AsyncTask;
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-
-
-import javax.net.ssl.HttpsURLConnection;
-
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -57,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
     private ProgressBar mProgressBar;
     private MatchAdapter mAdapter;
     private DrawerLayout mDrawerLayout;
+    private Toolbar toolbar;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     private MatchViewModel mLiveMatchDataViewModel;
 
@@ -64,6 +54,21 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Find the toolbar
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //Now get the entire action bar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_nav_menu);
+
+        getSupportActionBar().setElevation(0);
+
+
+        //Find the drawer
+        mDrawerLayout = findViewById(R.id.drawer_layout);
 
         //Find the adapter
         mAdapter = new MatchAdapter(this);
@@ -73,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
         mRecyclerLiveData.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerLiveData.setHasFixedSize(true);
         mRecyclerLiveData.setAdapter(mAdapter);
+
+
 
         //Find the search box
         mSearchBar = findViewById(R.id.et_search_box);
@@ -121,6 +128,8 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
             }
         });
 
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,R.string.drawer_open, R.string.drawer_close);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
 
     }
 

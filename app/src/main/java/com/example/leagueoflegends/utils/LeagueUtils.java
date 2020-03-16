@@ -23,7 +23,8 @@ public class LeagueUtils {
     private final static String api_key_param = "api_key";
 
     // This must be changed daily!!!!!!!!!!
-    private final static String apiKey = "RGAPI-271eff44-35e0-4440-b3d3-3a4cc344dd40";
+    //private final static String apiKey = "RGAPI-271eff44-35e0-4440-b3d3-3a4cc344dd40";
+    private final static String apiKey = BuildConfig.RIOT_API_KEY;
 
     // Create hash map to get champion name from id
     private static HashMap<Integer, String> idToName = new HashMap<>();

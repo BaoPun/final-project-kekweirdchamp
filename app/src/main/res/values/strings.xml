@@ -3,6 +3,8 @@
     <string name="search_box_hint">Enter summoner name: </string>
     <string name="search_button_text">Search Live Data</string>
     <string name="loading_error">Error: summoner either does not exist or is not in a live game</string>
+    <string name="drawer_open">drawer open</string>
+    <string name="drawer_close">drawer close</string>
 
     <!-- strings for server prefs -->
     <string name="pref_server_key" translatable="false">pref_server</string>
@@ -30,4 +32,8 @@
     <string name="pref_server_la1_value" translatable="false">la1</string>
     <string name="pref_server_la2_value" translatable="false">la2</string>
     <string name="pref_server_default_value" translatable="false">@string/pref_server_na1_value</string>
+
+
+
+
 </resources>
