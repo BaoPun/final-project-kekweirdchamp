@@ -16,7 +16,6 @@ public class MatchViewModel extends ViewModel{
     private MatchRepository mRepository;
     private LiveData<List<LeagueMatchInfo>> Match;
     private LiveData<Status> mLoadingStatus;
-    private String encryptedID;
 
     public MatchViewModel(){
         mRepository = new MatchRepository();
@@ -28,11 +27,6 @@ public class MatchViewModel extends ViewModel{
     // Get the encrypted ID given the summoner name
     public void loadSummonerNameURL(String summoner) {
         mRepository.loadSummonerNameURL(summoner);
-    }
-
-    // Getter
-    public String getEncryptedID(){
-        return encryptedID;
     }
 
 

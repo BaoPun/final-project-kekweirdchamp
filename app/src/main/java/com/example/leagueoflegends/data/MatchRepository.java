@@ -32,8 +32,8 @@ public class MatchRepository implements LoadMatchTask.AsyncCallback, EncryptedID
         new EncryptedIDTask(this).execute(url);
     }
 
-    public void loadLiveGameURL(String summoner) {
-        String url = LeagueUtils.buildSpectatorURL(summoner);
+    public void loadLiveGameURL(String encrypt) {
+        String url = LeagueUtils.buildSpectatorURL(encrypt);
         System.out.println("Loading results: " + url);
         mLiveMatch.setValue(null);
         mLoadingStatus.setValue(Status.LOADING);
@@ -62,7 +62,7 @@ public class MatchRepository implements LoadMatchTask.AsyncCallback, EncryptedID
         if(id != null) {
             encryptedID = id;
             Log.d(TAG, "eID: " + encryptedID);
-            loadLiveGameURL(encryptedID);
+            loadLiveGameURL(encryptedID);  //chaining different async tasks together
         } else
             mLoadingStatus.setValue(Status.ERROR);
     }

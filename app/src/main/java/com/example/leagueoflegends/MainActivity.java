@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
         // Create intent here (NOT COMPLETE FOR NOW)
         System.out.println("Who is this: " + info.summonerName);
         System.out.println("Champion: " + info.championName);
+        System.out.println("Team: " + (info.teamId == 100 ? "Blue" : "Red"));
     }
 
     /*
@@ -163,14 +164,12 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
 
         LeagueUtils.setServer(server);
 
-        // Part 1: build the summoner name query url
+        // build the summoner name query url
         String summonerID_url = LeagueUtils.buildSummonerNameURL(summoner);
         Log.d(TAG, "searching with url: " + summonerID_url);
 
         // Get JSON content from first url and then extract its encrypted ID
+        // because both tasks are async, we have to chain the async tasks sequentially on their override methods in MatchRepository.java
         mLiveMatchDataViewModel.loadSummonerNameURL(summonerID_url);
     }
-
-
-
 }

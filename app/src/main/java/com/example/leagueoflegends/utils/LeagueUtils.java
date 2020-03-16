@@ -23,10 +23,10 @@ public class LeagueUtils {
     private final static String api_key_param = "api_key";
 
     // This must be changed daily!!!!!!!!!!
-    private final static String apiKey = "RGAPI-6cb019f3-050c-4137-82e2-55a2a28fd25a";
+    private final static String apiKey = "RGAPI-271eff44-35e0-4440-b3d3-3a4cc344dd40";
 
     // Create hash map to get champion name from id
-    private static HashMap<Integer, String> idToName = new HashMap<Integer, String>();
+    private static HashMap<Integer, String> idToName = new HashMap<>();
 
     private static void createMap(){
         // Manually get each champion's name from their id
@@ -144,7 +144,7 @@ public class LeagueUtils {
         idToName.put(50, "Swain");
         idToName.put(517, "Sylas");
         idToName.put(134, "Syndra");
-        idToName.put(233, "Tahm Kench");
+        idToName.put(223, "Tahm Kench");
         idToName.put(163, "Taliyah");
         idToName.put(91, "Talon");
         idToName.put(44, "Taric");
@@ -215,12 +215,9 @@ public class LeagueUtils {
                 .build().toString();
     }
 
-
     static class MatchData{
         ArrayList<LeagueMatchInfo> participants;
     }
-
-
 
     public static ArrayList<LeagueMatchInfo> parseMatchData(String json){
         Gson gson = new Gson();

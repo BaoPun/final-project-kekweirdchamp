@@ -2,6 +2,7 @@ package com.example.leagueoflegends;
 
 import android.service.autofill.FieldClassification;
 import android.view.LayoutInflater;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,7 +10,6 @@ import android.widget.TextView;
 import com.example.leagueoflegends.data.*;
 
 import java.util.List;
-import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResultViewHolder>{
     private List<LeagueMatchInfo> LiveMatchInfo;
     private OnSearchResultClickListener listener;
-    private HashMap<Integer, String> idToName = new HashMap<Integer, String>();
 
     interface OnSearchResultClickListener{
         void onSearchResultClicked(LeagueMatchInfo info);
@@ -52,7 +51,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
     @Override
     public void onBindViewHolder(SearchResultViewHolder holder, int pos){
         holder.bind(LiveMatchInfo.get(pos));
-
+        holder.text.setTextColor((LiveMatchInfo.get(pos).teamId == 100 ? holder.text.getContext().getColor(R.color.blueSide): holder.text.getContext().getColor(R.color.redSide)));
     }
 
     class SearchResultViewHolder extends RecyclerView.ViewHolder{
@@ -71,7 +70,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
         }
 
         void bind(LeagueMatchInfo match){
-            text.setText(match.summonerName);
+            text.setText((match.teamId == 100 ? "Blue: " : "Red: ") + match.summonerName);
+            //text.setTextColor((match.teamId == 100 ? Color.parseColor("#87CEFA") : Color.parseColor("#FF4500")));
         }
 
     }

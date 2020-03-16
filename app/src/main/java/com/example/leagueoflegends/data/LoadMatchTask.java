@@ -24,12 +24,8 @@ public class LoadMatchTask extends AsyncTask<String, Void, String>{
     protected String doInBackground(String... strings){
         String url = strings[0];
         String MatchInfo = null;
-        try{
-            MatchInfo = NetworkUtils.doHttpGet(url);
-        }
-        catch (IOException e){
-            //e.printStackTrace();
-        }
+        try{ MatchInfo = NetworkUtils.doHttpGet(url); }
+        catch(IOException e){}
         return MatchInfo;
     }
 
