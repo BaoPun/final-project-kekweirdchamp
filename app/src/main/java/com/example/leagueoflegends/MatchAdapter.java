@@ -1,13 +1,17 @@
 package com.example.leagueoflegends;
 
 import android.service.autofill.FieldClassification;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.leagueoflegends.data.*;
+import com.example.leagueoflegends.utils.LeagueUtils;
 
 import java.util.List;
 
@@ -15,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResultViewHolder>{
+    private final static String TAG = MatchAdapter.class.getSimpleName();
     private List<LeagueMatchInfo> LiveMatchInfo;
     private OnSearchResultClickListener listener;
 
@@ -55,11 +60,13 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
     }
 
     class SearchResultViewHolder extends RecyclerView.ViewHolder{
+        private ImageView champ_icon;
         private TextView text;
 
         SearchResultViewHolder(View itemView){
             super(itemView);
             text = itemView.findViewById(R.id.tv_search_result);
+            champ_icon = itemView.findViewById(R.id.iv_champ_icon);
 
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -72,6 +79,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
         void bind(LeagueMatchInfo match){
             text.setText((match.teamId == 100 ? "Blue: " : "Red: ") + match.summonerName);
             //text.setTextColor((match.teamId == 100 ? Color.parseColor("#87CEFA") : Color.parseColor("#FF4500")));
+            String iconURL = LeagueUtils.buildChampIconURL(match.championName);
+            Glide.with(champ_icon.getContext()).load(iconURL).into(champ_icon);
         }
 
     }
