@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -90,6 +91,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
             text.setText(match.summonerName);
             String iconURL = LeagueUtils.buildChampIconURL(match.championName);
             Glide.with(champ_icon.getContext()).load(iconURL).into(champ_icon);
+            itemView.animate().alpha(1f).setDuration(1000);
         }
 
     }
