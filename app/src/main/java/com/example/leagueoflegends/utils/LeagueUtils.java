@@ -2,6 +2,7 @@ package com.example.leagueoflegends.utils;
 
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.net.MalformedURLException;
 
@@ -15,12 +16,16 @@ import java.util.HashMap;
 import androidx.annotation.Nullable;
 
 public class LeagueUtils {
+    private final static String TAG = LeagueUtils.class.getSimpleName();
+
     // Query by summoner name
     private final static String https = "https://";
     private static String server = "na1";
     private final static String getSummonerName = "api.riotgames.com/lol/summoner/v4/summoners/";
     private final static String byName_param = "by-name";
     private final static String api_key_param = "api_key";
+
+    private final static String getChampIcon = "ddragon.leagueoflegends.com/cdn/10.5.1/img/champion/";
 
     // This must be changed daily!!!!!!!!!!
     //private final static String apiKey = "RGAPI-271eff44-35e0-4440-b3d3-3a4cc344dd40";
@@ -213,6 +218,13 @@ public class LeagueUtils {
     // Get in-game information url
     public static String buildSpectatorURL(String encryptedID){
         return Uri.parse(https + server + "." + spectateGame).buildUpon().appendPath(bySummoner_param).appendPath(encryptedID).appendQueryParameter(api_key_param, apiKey)
+                .build().toString();
+    }
+
+    // Get champ icon url
+    public static String buildChampIconURL(String champName) {
+        String imageName = champName.replaceAll("[ ']", "") + ".png";
+        return Uri.parse(https + getChampIcon).buildUpon().appendPath(imageName)
                 .build().toString();
     }
 
