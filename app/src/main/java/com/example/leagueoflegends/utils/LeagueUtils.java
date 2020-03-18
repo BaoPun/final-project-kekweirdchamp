@@ -125,11 +125,11 @@ public class LeagueUtils {
         idToName.put(80, "Pantheon");
         idToName.put(78, "Poppy");
         idToName.put(555, "Pyke");
-        idToName.put(246, "Qiyanna");
+        idToName.put(246, "Qiyana");
         idToName.put(133, "Quinn");
         idToName.put(497, "Rakan");
         idToName.put(33, "Rammus");
-        idToName.put(421, "Rek'sai");
+        idToName.put(421, "Rek'Sai");
         idToName.put(58, "Renekton");
         idToName.put(107, "Rengar");
         idToName.put(92, "Riven");
@@ -224,6 +224,7 @@ public class LeagueUtils {
     // Get champ icon url
     public static String buildChampIconURL(String champName) {
         String imageName = champName.replaceAll("[ ']", "") + ".png";
+
         return Uri.parse(https + getChampIcon).buildUpon().appendPath(imageName)
                 .build().toString();
     }

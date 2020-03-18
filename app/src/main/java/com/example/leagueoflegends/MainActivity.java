@@ -120,7 +120,15 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
         });
 
         //Create the button and its click event
+        //Also added preferences here just so we get the specific server
+        //And display it on the button
         Button searchButton = findViewById(R.id.btn_search);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String server = preferences.getString(
+                getString(R.string.pref_server_key),
+                getString(R.string.pref_server_default_value)
+        );
+        searchButton.setText(getString(R.string.search_button_text) + " (" + server + ")");
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -155,8 +163,19 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
     }
 
     @Override
+    public void onImageResultClicked(LeagueMatchInfo info){
+        System.out.println("Who is this: " + info.summonerName);
+        System.out.println("Champion: " + info.championName);
+        System.out.println("Team: " + (info.teamId == 100 ? "Blue" : "Red"));
+
+        //System.out.println(LeagueUtils.buildChampIconURL(info.championName));
+
+        //searchSummoner(info.summonerName);
+        searchChampion(info.championName);
+    }
+
+    @Override
     public void onSearchResultClicked(LeagueMatchInfo info){
-        // Create intent here (NOT COMPLETE FOR NOW)
         System.out.println("Who is this: " + info.summonerName);
         System.out.println("Champion: " + info.championName);
         System.out.println("Team: " + (info.teamId == 100 ? "Blue" : "Red"));
@@ -189,17 +208,17 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
     }
 
     //created searchSummoner function 3/15/2020
+    // Loads the summoner's respective OP.GG
     public void searchSummoner(String summoner) {
         //String summoner = mSearchBar.getText().toString();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String server = preferences.getString(
                 getString(R.string.pref_server_key),
                 getString(R.string.pref_server_default_value));
-        server = convertServer(server);
+        server = convertServer(server);     // getting rid of the "1" in the server name
         String url = "https://" + server + ".op.gg/summoner/userName=" + summoner;
 
         Intent intent = new Intent();
-        //intent.setPackage("com.android.chrome");
         intent.setAction(Intent.ACTION_VIEW);
 
         PackageManager packageManager = getPackageManager();
@@ -208,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
         startActivity(intent);
     }
 
+    // Loads the clicked champion's respective U.GG
     public void searchChampion(String champion) {
         //String summoner = mSearchBar.getText().toString();
         champion = champion.replaceAll("\\s", ""); //removes all spaces in champ name

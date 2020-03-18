@@ -25,7 +25,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
 
     interface OnSearchResultClickListener{
         void onSearchResultClicked(LeagueMatchInfo info);
+        void onImageResultClicked(LeagueMatchInfo info);
     }
+
 
     public MatchAdapter(OnSearchResultClickListener click){
         listener = click;
@@ -68,6 +70,14 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
             text = itemView.findViewById(R.id.tv_search_result);
             champ_icon = itemView.findViewById(R.id.iv_champ_icon);
 
+            // Give the image a specific onClick event to differentiate it from its entire item on the RecyclerView
+            champ_icon.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    listener.onImageResultClicked(LiveMatchInfo.get(getAdapterPosition()));
+                }
+            });
+
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
@@ -77,8 +87,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.SearchResult
         }
 
         void bind(LeagueMatchInfo match){
-            text.setText((match.teamId == 100 ? "Blue: " : "Red: ") + match.summonerName);
-            //text.setTextColor((match.teamId == 100 ? Color.parseColor("#87CEFA") : Color.parseColor("#FF4500")));
+            text.setText(match.summonerName);
             String iconURL = LeagueUtils.buildChampIconURL(match.championName);
             Glide.with(champ_icon.getContext()).load(iconURL).into(champ_icon);
         }
