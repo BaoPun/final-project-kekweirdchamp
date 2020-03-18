@@ -7,10 +7,14 @@ This is CS 492 Final Project focusing on League of Legends.
 Enter a summoner (preset is from NA).
 If that summoner is in a SUMMONERS RIFT (preset) game, then list out it and 9 other players.
 
-By clicking on each player involved in the live game, the user will be able to see what champion they are playing
-  what side are they playing on, and what rank they are.
-Also within that specific intent, the user will either be able to go to op.gg to look at the user or go to u.gg to look at what champion
-  they are playing.
+On each layout, the user is able to see ALL of the 9 other players that are in the same game as the searched user.  Each player consists of a champion icon to see what champion is being played, as well as their summoner names color coded in either blue or red to determine which side they're playing on.
+
+The default server is NA, but can be changed in user preferences.
+
+After clicking on the image, it'll redirect the user to a u.gg website corresponding to that champion.
+After clicking anywhere else on the Recycler view, it'll redirect to that summoner's op.gg website.
+
+One final application currently in progress:
+Create a login authenticator.  If the user is able to login successfully on Riot API, then they are able to save their favorite summoners.
   
-Currently a lot of work needs to be done.
 DEVELOPERS: CREATE A FILE CALLED apikey.properties AND THEN ADD YOUR API KEY ON THERE.
