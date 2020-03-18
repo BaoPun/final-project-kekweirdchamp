@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -125,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
                 String summoner = mSearchBar.getText().toString();
                 if(!TextUtils.isEmpty(summoner))
                     queryForMatchInfo(summoner);
+                    //searchSummoner(); //change back to queryForMatchInfo
             }
         });
 
@@ -157,6 +160,9 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
         System.out.println("Who is this: " + info.summonerName);
         System.out.println("Champion: " + info.championName);
         System.out.println("Team: " + (info.teamId == 100 ? "Blue" : "Red"));
+
+        searchSummoner(info.summonerName);
+        //searchChampion(info.championName);
     }
 
     /*
@@ -180,5 +186,81 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
         // Get JSON content from first url and then extract its encrypted ID
         // because both tasks are async, we have to chain the async tasks sequentially on their override methods in MatchRepository.java
         mLiveMatchDataViewModel.loadSummonerNameURL(summonerID_url);
+    }
+
+    //created searchSummoner function 3/15/2020
+    public void searchSummoner(String summoner) {
+        //String summoner = mSearchBar.getText().toString();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String server = preferences.getString(
+                getString(R.string.pref_server_key),
+                getString(R.string.pref_server_default_value));
+        server = convertServer(server);
+        String url = "https://" + server + ".op.gg/summoner/userName=" + summoner;
+
+        Intent intent = new Intent();
+        //intent.setPackage("com.android.chrome");
+        intent.setAction(Intent.ACTION_VIEW);
+
+        PackageManager packageManager = getPackageManager();
+        packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public void searchChampion(String champion) {
+        //String summoner = mSearchBar.getText().toString();
+        champion = champion.replaceAll("\\s", ""); //removes all spaces in champ name
+        champion = champion.toLowerCase();
+
+        String url = "https://u.gg/lol/champions/" + champion + "/build";
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+
+        PackageManager packageManager = getPackageManager();
+        packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    public String convertServer(String server) {
+        switch(server) {
+            case "ru":
+                server = "ru";
+                return server;
+            case "kr":
+                server = "";
+                return server;
+            case "br1":
+                server = "br";
+                return server;
+            case "oc1":
+                server = "oce";
+                return server;
+            case "jp1":
+                server = "jp";
+                return server;
+            case "na1":
+                server = "na";
+                return server;
+            case "eun1":
+                server = "eune";
+                return server;
+            case "euw1":
+                server = "euw";
+                return server;
+            case "tr1":
+                server = "tr";
+                return server;
+            case "la1":
+                server = "lan";
+                return server;
+            case "la2":
+                server = "las";
+                return server;
+            default:
+                return("invalid server setting found");
+        }
     }
 }

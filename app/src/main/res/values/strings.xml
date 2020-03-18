@@ -3,6 +3,10 @@
     <string name="search_box_hint">Enter summoner name: </string>
     <string name="search_button_text">Search Live Data</string>
     <string name="loading_error">Error: summoner either does not exist or is not in a live game</string>
+    <string name="live_match">Search for Player Currently in Game</string>
+    <string name="match_history">Search for Player to View Past Matches</string>
+
+    <!-- Completely useless, only here for the sake of creating a custom drawer -->
     <string name="drawer_open">drawer open</string>
     <string name="drawer_close">drawer close</string>
 
