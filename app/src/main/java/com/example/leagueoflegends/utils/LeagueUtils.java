@@ -109,7 +109,7 @@ public class LeagueUtils {
         idToName.put(57, "Maokai");
         idToName.put(11, "Master Yi");
         idToName.put(21, "Miss Fortune");
-        idToName.put(62, "Wukong"); //LUL they put him as MonkeyKing
+        idToName.put(62, "MonkeyKing"); //LUL they put him as MonkeyKing
         idToName.put(82, "Mordekaiser");
         idToName.put(25, "Morgana");
         idToName.put(267, "Nami");
