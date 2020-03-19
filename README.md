@@ -14,7 +14,8 @@ The default server is NA, but can be changed in user preferences.
 After clicking on the image, it'll redirect the user to a u.gg website corresponding to that champion.
 After clicking anywhere else on the Recycler view, it'll redirect to that summoner's op.gg website.
 
-One final application currently in progress:
-Create a login authenticator.  If the user is able to login successfully on Riot API, then they are able to save their favorite summoners.
+Some animations are also added to have results fade in upon a successful search.
+
+User preferences are added to query between different regions.  Due to limitations with Riot's API, we cannot see China's servers.
   
 DEVELOPERS: CREATE A FILE CALLED apikey.properties AND THEN ADD YOUR API KEY ON THERE.
