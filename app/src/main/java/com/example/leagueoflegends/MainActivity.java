@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -85,6 +86,20 @@ public class MainActivity extends AppCompatActivity implements MatchAdapter.OnSe
 
         //Find the search box
         mSearchBar = findViewById(R.id.et_search_box);
+        mSearchBar.setOnKeyListener(new View.OnKeyListener(){
+            @Override
+            public boolean onKey(View v, int key, KeyEvent e){
+                if(key == KeyEvent.KEYCODE_ENTER)
+                {
+                    Log.d(TAG, "The enter key was pressed");
+                    String summoner = mSearchBar.getText().toString();
+                    if(!TextUtils.isEmpty(summoner))
+                        queryForMatchInfo(summoner);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         //Find the error message
         mErrorMessage = findViewById(R.id.tv_error_message);
